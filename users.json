@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Aima Amanat",
+    "gender": "Female",
+    "email": "muhammad.ali@example.com",
+    "city": "Karachi",
+    "phone": "03219876543"
+  },
+  {
+    "id": 2,
+    "name": "Aisha Khan",
+    "gender": "Female",
+    "email": "aisha.khan@example.com",
+    "city": "Lahore",
+    "phone": "03219876543"
+  },
+  {
+    "id": 3,
+    "name": "Ahmed Shah",
+    "gender": "Male",
+    "email": "ahmed.shah@example.com",
+    "city": "Islamabad",
+    "phone": "03335551234"
+  },
+  {
+    "id": 4,
+    "name": "Fatima Khan",
+    "gender": "Female",
+    "email": "fatima.khan@example.com",
+    "city": "Rawalpindi",
+    "phone": "03456789012"
+  },
+  {
+    "id": 5,
+    "name": "Ali Hassan",
+    "gender": "Male",
+    "email": "ali.hassan@example.com",
+    "city": "Faisalabad",
+    "phone": "03024567890"
+  },
+  {
+    "id": 6,
+    "name": "Zainab Ali",
+    "gender": "Female",
+    "email": "zainab.ali@example.com",
+    "city": "Multan",
+    "phone": "03337778889"
+  },
+  {
+    "id": 7,
+    "name": "Mustafa Ahmed",
+    "gender": "Male",
+    "email": "mustafa.ahmed@example.com",
+    "city": "Hyderabad",
+    "phone": "03112223334"
+  },
+  {
+    "id": 8,
+    "name": "Sara Khan",
+    "gender": "Female",
+    "email": "sara.khan@example.com",
+    "city": "Quetta",
+    "phone": "03344445556"
+  },
+  {
+    "id": 9,
+    "name": "Bilal Raza",
+    "gender": "Male",
+    "email": "bilal.raza@example.com",
+    "city": "Peshawar",
+    "phone": "03453332221"
+  },
+  {
+    "id": 10,
+    "name": "Zahra Hussain",
+    "gender": "Female",
+    "email": "zahra.hussain@example.com",
+    "city": "Gujranwala",
+    "phone": "03011112223"
+  }
+]
