@@ -17,6 +17,16 @@ This project is an Online Address Book implemented using HTML, CSS, Bootstrap CS
 - Node.js
 - Express
 
+## Usage
+
+To use this Online Address Book, follow these steps:
+
+1. Clone the repository: git clone <https://github.com/jehanzaib084/OnlineAddressBook>
+2. Navigate to the project directory: cd your-project-directory
+3. Install dependencies using npm: npm install
+
+
+This will install all the dependencies listed in the `package.json` file and generate the `node_modules` directory.
 
 ## Contributors
 
