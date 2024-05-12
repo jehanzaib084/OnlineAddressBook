@@ -20,7 +20,7 @@ This project is an Online Address Book implemented using HTML, CSS, Bootstrap CS
 
 ## Contributors
 
-- [Your Name](link-to-your-github-profile)
+- [Your Name](https://github.com/jehanzaib084)
 
 ## License
 
