@@ -41,7 +41,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <p align="center">
   <img src="/screenshots/StartPage.png" alt="Start Page" />
   <img src="/screenshots/HomePage.png" alt="Home Page"/>
-  <img src="/screenshots/UserDetailsPagePage.png" alt="User Details Page"/>
+  <img src="/screenshots/UserDetailsPage.png" alt="User Details Page"/>
   <img src="/screenshots/UpdateUserPage.png" alt="Update User Page"/>
   <img src="/screenshots/AddUserPage.png" alt="Add New User Page"/>
 </p>
