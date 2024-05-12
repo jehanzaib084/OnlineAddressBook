@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update User</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      width: 60%;
+      padding: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-submit {
+      margin-top: 20px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h1 class="text-center">Update User</h1>
+      <form action="/update" method="POST">
+        <input type="hidden" name="id" value="<%= user.id %>">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= user.name %>" required>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select class="form-control" id="gender" name="gender" required>
+            <option value="Male" <% if (user.gender==='Male' ) { %> selected <% } %>>Male</option>
+            <option value="Female" <% if (user.gender==='Female' ) { %> selected <% } %>>Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" required>
+        </div>
+        <div class="form-group">
+          <label for="city">City:</label>
+          <input type="text" class="form-control" id="city" name="city" value="<%= user.city %>" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" class="form-control" id="phone" name="phone" value="<%= user.phone %>" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit text-white-600">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Address Book</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script>
+    function redirectToShow(userId) {
+      window.location.href = "/show?id=" + userId;
+    }
+  </script>
+  <style>
+    .clickable-row:hover {
+      cursor: pointer;
+      transform: translateY(-3px);
+      transition: transform 0.2s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center">Address Book</h1>
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(user=> { %>
+              <tr class="clickable-row" onclick="redirectToShow('<%= user.id %>')">
+                <td>
+                  <%= user.id %>
+                </td>
+                <td>
+                  <%= user.name %>
+                </td>
+                <td>
+                  <a href="/update?id=<%= user.id %>" class="btn btn-primary btn-sm">Update</a>
+                  <form action="/delete" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="<%= user.id %>">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                  </form>
+                </td>
+              </tr>
+              <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <a href="/add" class="btn btn-success mx-auto">Add New User</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
