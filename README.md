@@ -1,4 +1,5 @@
 # OnlineAddressBook
+
 This project is an Online Address Book implemented using HTML, CSS, Bootstrap CSS, EJS, Node.js, and Express. It allows users to manage their contacts and addresses in a web-based interface.
 
 ## Features
@@ -8,6 +9,8 @@ This project is an Online Address Book implemented using HTML, CSS, Bootstrap CS
 - **View Contacts**: View a list of all contacts with their details.
 - **Delete Contact**: Delete a contact from the address book.
 - **Responsive Design**: The address book is responsive and works well on various screen sizes.
+- **User Authentication**: Secure login system for administrators to manage the address book.
+- **Session Management**: User sessions with a 10-minute timeout.
 
 ## Technologies Used
 
@@ -21,12 +24,21 @@ This project is an Online Address Book implemented using HTML, CSS, Bootstrap CS
 
 To use this Online Address Book, follow these steps:
 
-1. Clone the repository: git clone <https://github.com/jehanzaib084/OnlineAddressBook>
-2. Navigate to the project directory: cd your-project-directory
-3. Install dependencies using npm: npm install
-
+1. Clone the repository: `git clone https://github.com/jehanzaib084/OnlineAddressBook`
+2. Navigate to the project directory: `cd your-project-directory`
+3. Install dependencies using npm: `npm install`
+4. Start the server: `node server.js`
 
 This will install all the dependencies listed in the `package.json` file and generate the `node_modules` directory.
+
+## User Authentication
+
+The application includes a basic authentication system for administrators. Only authenticated users can add, update, and delete contacts. The login session expires after 10 minutes of inactivity.
+
+### Default Admin Credentials
+
+- **Username**: admin
+- **Password**: admin123
 
 ## Contributors
 
@@ -45,4 +57,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   <img src="/screenshots/UpdateUserPage.png" alt="Update User Page"/>
   <img src="/screenshots/AddUserPage.png" alt="Add New User Page"/>
 </p>
-
