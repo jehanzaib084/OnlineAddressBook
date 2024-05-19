@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const jsonfile = require('jsonfile');
 const path = require('path');
 const app = express();
@@ -10,12 +11,23 @@ app.set('view engine', 'ejs');
 
 const USERS_FILE = 'users.json';
 
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 600000, // 10 minutes
+        path: '/',
+    }
+}));
+
+
 function getUsers() {
     try {
         const users = jsonfile.readFileSync(USERS_FILE);
         return users;
     } catch (err) {
-        // console.error('Error reading users file:', err);
+        console.error('Error reading users file:', err);
         return [];
     }
 }
@@ -23,9 +35,8 @@ function getUsers() {
 function saveUsers(users) {
     try {
         jsonfile.writeFileSync(USERS_FILE, users, { spaces: 2 });
-        // console.log('Saved users:', users);
     } catch (err) {
-        // console.error('Error writing users file:', err);
+        console.error('Error writing users file:', err);
     }
 }
 
@@ -37,87 +48,94 @@ function generateUserId() {
     return users[users.length - 1].id + 1;
 }
 
+function checkLogin(req, res, next) {
+    if (req.session.loggedIn) {
+        return next();
+    }
+    res.redirect('/login');
+}
+
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'views','index.html'));
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
 app.get('/home', (req, res) => {
     const users = getUsers();
-    // console.log('Users:', users);
-    res.render('home', { users });
+    const loggedIn = req.session.loggedIn;
+    res.render('home', { users, loggedIn });
 });
 
-app.get('/add', (req, res) => {
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if (username === 'admin' && password === 'admin123') {
+        req.session.loggedIn = true;
+        req.session.username = username;
+        res.redirect('/home');
+    } else {
+        res.status(401).send('Invalid credentials');
+    }
+});
+
+app.get('/add', checkLogin, (req, res) => {
     res.render('add');
 });
 
-app.post('/add', (req, res) => {
+app.post('/add', checkLogin, (req, res) => {
     const newUser = req.body;
-    newUser.id = parseInt(generateUserId()); // Convert to integer
-    // console.log('New user:', newUser);
+    newUser.id = generateUserId();
+
     const users = getUsers();
     users.push(newUser);
     saveUsers(users);
     res.redirect('/home');
 });
-  
 
-app.get('/update', (req, res) => {
+app.get('/update', checkLogin, (req, res) => {
     const userId = req.query.id;
     const users = getUsers();
-    // console.log('Users:', users);
-    const user = users.find(user => user.id === parseInt(userId));
+    const user = users.find(user => user.id == userId);
     if (!user) {
-        res.status(404).send('User not found');
-        return;
+        return res.status(404).send('User not found');
     }
-    // console.log('User:', user);
     res.render('update', { user });
 });
 
-
-app.post('/update', (req, res) => {
+app.post('/update', checkLogin, (req, res) => {
     const updatedUser = req.body;
-    updatedUser.id = parseInt(updatedUser.id); // Convert to integer
-    // console.log('Updated user:', updatedUser);
     const users = getUsers();
-    const index = users.findIndex(user => user.id === updatedUser.id); // No need to parse here
+    const index = users.findIndex(user => user.id == updatedUser.id);
     if (index === -1) {
-        res.status(404).send('User not found');
-        return;
+        return res.status(404).send('User not found');
     }
     users[index] = updatedUser;
     saveUsers(users);
     res.redirect('/home');
 });
 
-
-app.post('/delete', (req, res) => {
-    const userId = parseInt(req.body.id);
-    // console.log('Deleted user ID:', userId);
+app.post('/delete', checkLogin, (req, res) => {
+    const userId = req.body.id;
     let users = getUsers();
-    users = users.filter(user => user.id !== userId);
+    users = users.filter(user => user.id != userId);
     saveUsers(users);
     res.redirect('/home');
 });
 
-
 app.get('/show', (req, res) => {
-    const userId = parseInt(req.query.id);
-    // console.log('User ID:', userId);
+    const userId = req.query.id;
     const users = getUsers();
-    // console.log('Users:', users);
-    const user = users.find(user => user.id === userId);
+    const user = users.find(user => user.id == userId);
     if (!user) {
-        res.status(404).send('User not found');
-        return;
+        return res.status(404).send('User not found');
     }
-    // console.log('User:', user);
     res.render('show', { user });
 });
 
 const PORT = 3000;
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
